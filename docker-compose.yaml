@@ -1,0 +1,11 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      WEN_XIN_API_KEY:
+      WEN_XIN_SECRET_KEY:
+    restart: always
