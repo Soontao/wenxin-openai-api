@@ -6,6 +6,8 @@ import { fetchAccessToken } from './utils.mjs';
 
 const app = express();
 
+app.disable('x-powered-by');
+
 app.use(express.json());
 
 app.post("/v1/chat/completions", async (req, res) => {
