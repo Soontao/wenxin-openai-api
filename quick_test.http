@@ -1,0 +1,12 @@
+POST /v1/chat/completions
+host: localhost:3000
+content-type: application/json
+
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "could you give me a joke about tree"
+    }
+  ]
+}
