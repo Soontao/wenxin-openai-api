@@ -1,4 +1,6 @@
+import console from 'console';
 import express from 'express';
+import process from 'process';
 import { CONSTANTS } from './constants.mjs';
 import { fetchAccessToken } from './utils.mjs';
 
@@ -15,7 +17,7 @@ app.post("/v1/chat/completions", async (req, res) => {
   const model = req.body.model ?? 'ernie-speed-128k';
   // Default model is ERNIE-Bot-turbo
   // get token
-  const accessToken = await fetchAccessToken()
+  const accessToken = await fetchAccessToken();
   const response = await fetch(`${CONSTANTS.WEN_XIN_BASE_URL}/chat/${model}?access_token=${accessToken}`, {
     method: 'POST',
     headers: {
@@ -27,7 +29,7 @@ app.post("/v1/chat/completions", async (req, res) => {
   res.set('Content-Type', response.headers.get('Content-Type'));
 
   if (response.headers.get('Content-Type').includes('application/json')) {
-    const data = await response.json()
+    const data = await response.json();
     res.json({
       "id": data.id,
       "object": "chat.completion",
@@ -67,8 +69,8 @@ app.get("/v1/models", async (req, res) => {
         "owned_by": "organization-owner",
       },
     ],
-  })
-})
+  });
+});
 
 
 app.listen(parseInt(process.env.PORT ?? 3000), () => {
